@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .controls {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .dice-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .die {
+      width: 60px;
+      height: 60px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="controls">
+    <label for="diceNumber">Number of Dice:</label>
+    <input type="number" id="diceNumber" min="1" value="1">
+    <button onclick="rollDice()">Roll Dice</button>
+  </div>
+
+  <div class="dice-container" id="diceContainer">
+
+  </div>
+
+  <script>
+    function rollDice() {
+      const diceNumber = document.getElementById('diceNumber').value;
+      const diceContainer = document.getElementById('diceContainer');
+      diceContainer.innerHTML = '';
+
+      for (let i = 0; i < diceNumber; i++) {
+        const die = document.createElement('div');
+        die.className = 'die';
+        die.innerText = getRandomNumber(1, 6);
+        diceContainer.appendChild(die);
+      }
+    }
+
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+  </script>
+</body>
+
+</html>
